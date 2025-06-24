@@ -1,0 +1,24 @@
+name: porfolio Deplyoment
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+   build-and-deploy:
+     runs-on: ubuntu-latest
+     steps:
+     - name: checkout
+       uses: action/checkout@v1
+       
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+       aws-access-ke-id: ${{ secrrets.AWS_ACCESS_KE_ID }}
+       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KE }}
+       aws-region: us-east-1
+
+        -name: Deplo static site to S3 bucet
+        run: awws s3 snc . s3//tws-portfolio-d --delete
+   
